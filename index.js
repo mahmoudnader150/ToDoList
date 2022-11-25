@@ -1,27 +1,22 @@
-class Task {
-  static latestId = 0;
+import { ToDoList } from "./todolist.js";
+import { Task } from "./task.js";
 
-  constructor(title, description) {
-    this.taskId = ++latestId;
-    this.taskTitle = title;
-    this.taskDescription = description;
-  }
-}
+const todolist = new ToDoList();
 
-class ToDoList {
-  constructor() {
-    this.tasks = [];
-  }
+todolist.addTask(new Task("first task", "my first task"));
+todolist.addTask(new Task("second task", "my second task"));
 
-  addTask = (task) => {
-    this.tasks.push(task);
-  };
+console.log("My tasks:");
+console.log(todolist.getTasks());
 
-  markTaskDone = (targetId) => {
-    this.tasks = this.tasks.filter((task) => task.taskId !== targetId);
-  };
+console.log("Deleted task 2");
+todolist.markTaskDone(2);
 
-  getTasks = () => {
-    return this.tasks;
-  };
-}
+console.log("My tasks:");
+console.log(todolist.getTasks());
+
+console.log("Deleted task 1");
+todolist.markTaskDone(1);
+
+console.log("My tasks:");
+console.log(todolist.getTasks());
